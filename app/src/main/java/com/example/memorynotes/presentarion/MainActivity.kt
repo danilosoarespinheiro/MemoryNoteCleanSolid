@@ -1,7 +1,8 @@
-package com.example.memorynotes
+package com.example.memorynotes.presentarion
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.memorynotes.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
