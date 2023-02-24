@@ -1,4 +1,4 @@
-package com.example.memorynotes.presentarion
+package com.example.memorynotes.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
