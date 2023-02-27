@@ -5,4 +5,7 @@
     <string name="fragment_list_float_description">Float to add new Note</string>
     <string name="fragment_note_title_hint">Title</string>
     <string name="fragment_note_content_hint">Content</string>
+    <string name="item_note_title_text">Title</string>
+    <string name="item_note_content_text">Content</string>
+    <string name="item_note_date_text">Last updated</string>
 </resources>
