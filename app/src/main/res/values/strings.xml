@@ -8,4 +8,5 @@
     <string name="item_note_title_text">Title</string>
     <string name="item_note_content_text">Content</string>
     <string name="item_note_date_text">Last updated</string>
+    <string name="menu_delete_note">Delete note</string>
 </resources>

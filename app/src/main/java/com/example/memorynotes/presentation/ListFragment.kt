@@ -5,20 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.memorynotes.databinding.FragmentListBinding
 import com.example.memorynotes.framework.ListViewModel
-import com.example.memorynotes.framework.NoteViewModel
 
-class ListFragment : Fragment() {
+class ListFragment : Fragment(), ListAction {
 
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
-    private val notesListAdapter = NotesListAdapter(arrayListOf())
+    private val notesListAdapter = NotesListAdapter(arrayListOf(), this)
     private lateinit var viewModel : ListViewModel
 
     override fun onCreateView(
@@ -57,5 +55,9 @@ class ListFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         viewModel.getNotes()
+    }
+
+    override fun onClick(id: Long) {
+        goToNoteDetails(id)
     }
 }
