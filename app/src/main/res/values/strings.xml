@@ -9,4 +9,5 @@
     <string name="item_note_content_text">Content</string>
     <string name="item_note_date_text">Last updated</string>
     <string name="menu_delete_note">Delete note</string>
+    <string name="words_text">Words:</string>
 </resources>

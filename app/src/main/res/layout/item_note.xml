@@ -19,28 +19,38 @@
             style="@style/Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/item_note_title_text"
-            android:maxLines="1"
             android:ellipsize="end"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:maxLines="1"
+            android:text="@string/item_note_title_text"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/content"
             style="@style/Text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/item_note_content_text"
-            android:maxLines="1"
             android:ellipsize="end"
-            app:layout_constraintTop_toBottomOf="@id/title"/>
+            android:maxLines="1"
+            android:text="@string/item_note_content_text"
+            app:layout_constraintTop_toBottomOf="@id/title" />
 
         <TextView
             android:id="@+id/date"
             style="@style/Detail"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/item_note_date_text"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/wordCount"
+            style="@style/Detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/words_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

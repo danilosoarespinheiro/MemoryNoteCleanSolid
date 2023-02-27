@@ -34,6 +34,7 @@ class NotesListAdapter(var notes: ArrayList<Note>, val actions: ListAction) :
         private val noteTitle = binding.title
         private val noteContent = binding.content
         private val noteDate = binding.date
+        private val noteWords = binding.wordCount
 
         @SuppressLint("SimpleDateFormat", "SetTextI18n")
         fun bind(note: Note) {
@@ -44,6 +45,7 @@ class NotesListAdapter(var notes: ArrayList<Note>, val actions: ListAction) :
             noteDate.text = "Last updated : ${sdf.format(resulDate)}"
 
             layout.setOnClickListener { actions.onClick(note.id) }
+            noteWords.text = "Words: ${note.wordCount}"
         }
     }
 }
