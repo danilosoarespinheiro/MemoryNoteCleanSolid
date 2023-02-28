@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -23,7 +24,7 @@ class NoteFragment : Fragment() {
 
     private var _binding: FragmentNoteBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: NoteViewModel
+    private val viewModel: NoteViewModel by viewModels()
     private var currentNote = Note("", "", 0L, 0L)
     private var noteId = 0L
 
@@ -66,8 +67,6 @@ class NoteFragment : Fragment() {
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
-
-        viewModel = ViewModelProvider(this)[NoteViewModel::class.java]
         arguments?.let {
             noteId = NoteFragmentArgs.fromBundle(it).noteI
         }

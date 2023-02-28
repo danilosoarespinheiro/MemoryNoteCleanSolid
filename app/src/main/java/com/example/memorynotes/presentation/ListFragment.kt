@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
@@ -17,7 +18,7 @@ class ListFragment : Fragment(), ListAction {
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
     private val notesListAdapter = NotesListAdapter(arrayListOf(), this)
-    private lateinit var viewModel : ListViewModel
+    private val viewModel : ListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -33,9 +34,6 @@ class ListFragment : Fragment(), ListAction {
             adapter = notesListAdapter
         }
         binding.addNote.setOnClickListener { goToNoteDetails() }
-
-        viewModel = ViewModelProvider(this)[ListViewModel::class.java]
-
         observeViewModel()
     }
 
