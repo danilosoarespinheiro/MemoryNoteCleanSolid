@@ -12,6 +12,7 @@
 * Courotines
 * Navigation
 * ViewBinding
+* S.O.L.I.D
 
 
 ## Meta
