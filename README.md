@@ -1,5 +1,5 @@
 # MemoryNote
-> A MemoryNote built using Clean Architecture, MVVM and dependency injection. Just for study purposes
+> A MemoryNote built using Clean Architecture, MVVM and dependency injection. Just for study purposes.
 
 ![license][license-url]
 ![kotlin][language-url]
