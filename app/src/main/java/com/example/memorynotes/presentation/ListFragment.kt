@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,7 +17,7 @@ class ListFragment : Fragment(), ListAction {
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
     private val notesListAdapter = NotesListAdapter(arrayListOf(), this)
-    private val viewModel : ListViewModel by viewModels()
+    private val viewModel: ListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -42,7 +41,7 @@ class ListFragment : Fragment(), ListAction {
         Navigation.findNavController(binding.noteListView).navigate(action)
     }
 
-    private fun observeViewModel(){
+    private fun observeViewModel() {
         viewModel.notes.observe(viewLifecycleOwner) {
             binding.loadingView.visibility = View.GONE
             binding.noteListView.visibility = View.VISIBLE

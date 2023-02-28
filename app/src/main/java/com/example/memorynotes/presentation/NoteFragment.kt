@@ -12,13 +12,11 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.core.data.Note
 import com.example.memorynotes.R
 import com.example.memorynotes.databinding.FragmentNoteBinding
 import com.example.memorynotes.framework.NoteViewModel
-
 
 class NoteFragment : Fragment() {
 
@@ -47,19 +45,7 @@ class NoteFragment : Fragment() {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
                     R.id.deleteNote -> {
-                        if (context != null && noteId != 0L) {
-                            AlertDialog.Builder(context!!)
-                                .setMessage("Are you sure you want to delete this note?")
-                                .setTitle("Delete note")
-                                .setPositiveButton("Yes") { _, _ ->
-                                    viewModel.deleteNote(currentNote)
-                                }
-                                .setNegativeButton("Cancel") { dialogInterface, _ ->
-                                    dialogInterface.cancel()
-                                }
-                                .create()
-                                .show()
-                        }
+                        if (context != null && noteId != 0L) buildAlertDialog()
                         true
                     }
                     else -> false
@@ -75,27 +61,45 @@ class NoteFragment : Fragment() {
 
         binding.apply {
             checkButton.setOnClickListener {
-                if (titleView.text.toString() != "" || contentView.text.toString() != "") {
-                    val time = System.currentTimeMillis()
-                    currentNote.title = titleView.text.toString()
-                    currentNote.content = contentView.text.toString()
-                    currentNote.updateTime = time
-                    if (currentNote.id == 0L) currentNote.creationTime = time
-                    viewModel.saveNote(currentNote)
-                } else Navigation.findNavController(it).popBackStack()
-
+                if (titleView.text.toString() != "" || contentView.text.toString() != "") saveNote()
+                else Navigation.findNavController(it).popBackStack()
             }
         }
         observeViewModel()
     }
 
+    private fun FragmentNoteBinding.saveNote() {
+        val time = System.currentTimeMillis()
+        currentNote.apply {
+            title = titleView.text.toString()
+            content = contentView.text.toString()
+            updateTime = time
+            if (id == 0L) creationTime = time
+            viewModel.saveNote(this)
+        }
+    }
+
+    private fun buildAlertDialog() {
+        AlertDialog.Builder(requireContext())
+            .setMessage(getString(R.string.note_fragment_alert_dialog_msg))
+            .setTitle(getString(R.string.note_fragment_alert_dialog_title))
+            .setPositiveButton(getString(R.string.note_fragment_alert_dialog_positive_btn)) { _, _ ->
+                viewModel.deleteNote(currentNote)
+            }
+            .setNegativeButton(getString(R.string.note_fragment_alert_dialog_negative_btn)) { dialogInterface, _ ->
+                dialogInterface.cancel()
+            }
+            .create()
+            .show()
+    }
+
     private fun observeViewModel() {
         viewModel.saved.observe(viewLifecycleOwner) {
             if (it) {
-                printToasts("Done!")
+                printToasts(getString(R.string.note_fragment_done_msg))
                 hideKeyboard()
                 Navigation.findNavController(binding.titleView).popBackStack()
-            } else printToasts("Something went wrong, please try again!")
+            } else printToasts(getString(R.string.note_fragment_error_msg))
         }
 
         viewModel.currentNote.observe(viewLifecycleOwner) { note ->

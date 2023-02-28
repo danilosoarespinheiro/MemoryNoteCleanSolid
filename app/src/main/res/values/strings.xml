@@ -10,4 +10,10 @@
     <string name="item_note_date_text">Last updated</string>
     <string name="menu_delete_note">Delete note</string>
     <string name="words_text">Words:</string>
+    <string name="note_fragment_done_msg">Done!</string>
+    <string name="note_fragment_error_msg">Something went wrong, please try again!</string>
+    <string name="note_fragment_alert_dialog_msg">Are you sure you want to delete this note?</string>
+    <string name="note_fragment_alert_dialog_title">Delete note</string>
+    <string name="note_fragment_alert_dialog_positive_btn">Yes</string>
+    <string name="note_fragment_alert_dialog_negative_btn">Cancel</string>
 </resources>
